@@ -89,3 +89,47 @@ var addToArrayForm = function (num, k) {
 };
 
 // unshift操作比push 之后再reverse的执行时间长
+// 版本5
+var addToArrayForm = function(num, k) {
+    for(let i = num.length-1;i>=0;i--){
+        num[i]=num[i]+k%10
+        if(num[i]>=10){
+            num[i]-=10;
+            k=Math.floor(k/10)+1
+        }else{
+            k=Math.floor(k/10)
+        }
+    }
+    for(;k>0;k=Math.floor(k/10)){
+        num.unshift(k%10)
+    }
+    return num
+};
+// 同一思路 可以将计算的数据使用k进行存储 
+// 版本6
+
+var addToArrayForm = function(num, k) {
+    for(let i = num.length-1;i>=0||k>0;i--,k=Math.floor(k/10)){
+        if(i>=0){
+            k=k+num[i]
+            num[i]=k%10
+        }else{
+            num.unshift(k%10)
+        }
+    }
+    return num
+};
+
+// 算法题可以不使用额外的空间  见版本5
+
+// ...如何用es5实现
+//  ...的实现原理
+
+
+
+
+
+
+
+
+
