@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            /*height: calc(100% - 16px);*/
+            margin:0;
+            height: 100%;
+        }
+        #main{
+            width: 100px;
+            height:100px;
+            background-color: red;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+</body>
+<script type="text/javascript">
+    drag();
+    function drag() {
+        var odrag = document.getElementById("main");
+        odrag.onmousedown = function (ev) {
+            var oevent = ev || event;
+            var distanceX = oevent.clientX - odrag.offsetLeft;
+            var distanceY = oevent.clientY - odrag.offsetTop;
+            var old_x=oevent.clientX;
+            var old_y=oevent.clientY;
+            document.onmousemove = function (ev) {
+                
+                var oevent = ev || event;
+                var _x, _y;
+                _x = oevent.clientX - distanceX;
+                _y = oevent.clientY - distanceY;
+                if (_x < 0) _x = 0;
+                if (_y < 0) _y = 0;
+                if (_x > document.body.clientWidth - odrag.offsetWidth) _x = document.body.clientWidth  - odrag.offsetWidth;
+                if (_y > document.body.clientHeight  - odrag.offsetHeight) _y = document.body.clientHeight  - odrag.offsetHeight;
+                odrag.style.left = _x + 'px';
+                odrag.style.top = _y + 'px';
+            };
+            document.onmouseup = function (ev) {
+                var oevent = ev || event;
+                var _x = oevent.clientX - distanceX;
+                var _y = oevent.clientY - distanceY;
+
+                //存储位置区域比列或者具体数据
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        }
+    }
+
+</script>
+</html>

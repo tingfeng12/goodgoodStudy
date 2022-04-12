@@ -1,0 +1,14 @@
+.outprogress {
+    display: inline-block;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .inprogress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to right, #385df2, #c815ff);
+  }
