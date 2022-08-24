@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    Function.prototype.myCall = function(context, ...args) {
+        if(context === 'undefined' || context === null) {
+            context = window
+        }
+        let fnSymbol = Symbol()
+        context[fnSymbol] = this
+        let fn = context[fnSymbol](...args)
+        delete context[fnSymbol]
+        return fn
+    }
+
+    Function.prototype.myApply = function(context, args) {
+        if(context === 'undefined' || context === null) {
+            context = window
+        }
+        let fnSymbol = Symbol()
+        context[fnSymbol] = this
+        let fn = context[fnSymbol](...args)
+        delete context[fnSymbol]
+        return fn
+    }
+
+    Function.prototype.myBind = function(context) {
+        if(context === 'undefined' || context === null) {
+            context = window
+        }
+        self = this
+        return self.apply(context, args)
+    }
+
+</script>
+</html>
