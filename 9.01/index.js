@@ -1,0 +1,4 @@
+React18新的JSX解析方式和16的区别是什么？新版的最大好处是什么？React15不这么做原理上最大的制约是什么？
+
+你：____________________________
+React18解析jsx不用import React。以前在jsx文件中，需要引入React才能使用jsx，以前的解析方式会把<xx/>转换为React.creatElement('xx',...)，这种解析方式需要在上下文中import React。新的jsx解析方式，使用jsx-runtime中jsx方法转换，这块由编译器自动引入，不用手动引入React就可以解析jsx。好处是可以缩小打包的体积，还解决了createElement会引起的优化问题，createElement这个方法本来不是设计用来解析jsx的，优化的问题有没有大佬看的明白，原理上的制约，还没查明白。
