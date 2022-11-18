@@ -32,12 +32,15 @@
         return fn
     }
 
-    Function.prototype.myBind = function(context) {
-        if(context === 'undefined' || context === null) {
-            context = window
+    Function.prototype.myBind = function(context, ...args) {
+        const fn = this
+        args = args ? args : []
+        return function newFn(...NewArgs) {
+            if(this instanceof NewFn) {
+                return new fn(...args, ...NewArgs)
+            }
+            return fn.apply(context, [...args,...NewArgs])
         }
-        self = this
-        return self.apply(context, args)
     }
 
 </script>
